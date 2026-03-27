@@ -1,0 +1,32 @@
+[
+  {
+    "bookId": 1,
+    "bookName": "객체지향의 사실과 오해",
+    "author": "조영호",
+    "publisher": "위키북스"
+  },
+  {
+    "bookId": 2,
+    "bookName": "Clean Code",
+    "author": "Robert C. Martin",
+    "publisher": "인사이트"
+  },
+  {
+    "bookId": 3,
+    "bookName": "이펙티브 자바",
+    "author": "Joshua Bloch",
+    "publisher": "인사이트"
+  },
+  {
+    "bookId": 4,
+    "bookName": "자바의 정석",
+    "author": "남궁성",
+    "publisher": "도우출판"
+  },
+  {
+    "bookId": 5,
+    "bookName": "토비의 스프링",
+    "author": "이일민",
+    "publisher": "에이콘출판"
+  }
+]
