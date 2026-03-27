@@ -1,0 +1,82 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1774609508096,
+  "projectRoot": "/Users/gimgyeolhwi/Documents/dev/java-project/java_Library",
+  "techStack": {
+    "languages": [
+      {
+        "name": "Java/Kotlin",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "build.gradle"
+        ]
+      }
+    ],
+    "frameworks": [],
+    "packageManager": "gradle",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "src"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "gradle": {
+      "path": "gradle",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1774609508085,
+      "keyFiles": []
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 0,
+      "lastAccessed": 1774609508085,
+      "keyFiles": []
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "gradle/wrapper/gradle-wrapper.properties",
+      "accessCount": 2,
+      "lastAccessed": 1774609763703,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 1,
+      "lastAccessed": 1774609514585,
+      "type": "directory"
+    },
+    {
+      "path": "src/main/java/org/example/Main.java",
+      "accessCount": 1,
+      "lastAccessed": 1774609519029,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
