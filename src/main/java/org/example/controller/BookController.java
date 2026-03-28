@@ -42,10 +42,6 @@ public class BookController {
                 result = b;
             }
         }
-        if (result == null) {
-            System.out.println("값이 없습니다");
-
-        }
         return result;
     }
 

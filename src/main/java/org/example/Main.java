@@ -116,7 +116,12 @@ public class Main {
             case 2: {
                 System.out.println("정보 조회할 책 이름을 적어주세요");
                 String checkName = sc.nextLine();
-                System.out.println(bookController.isCheckName(checkName));
+                 Book nameResult = bookController.isCheckName(checkName);
+                 if (nameResult == null){
+                     System.out.println("책 정보 없음");
+                 } else {
+                     System.out.println(nameResult);
+                 }
                 break;
             }
             default:
