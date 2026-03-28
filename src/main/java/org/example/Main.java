@@ -104,7 +104,7 @@ public class Main {
                 System.out.println("책 이름을 입력해주세요 : ");
                 searchName = sc.nextLine();
                 List<Book> result = bookController.getBookByName(searchName);
-                if (result == null) {
+                if (result.isEmpty()) {
                     System.out.println("책 제목을 찾을 수 없습니다");
                 } else {
                     System.out.println(result);
