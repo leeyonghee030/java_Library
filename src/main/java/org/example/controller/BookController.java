@@ -24,7 +24,23 @@ public class BookController {
 
     // 조회
     public Book getBookById(int id) {
+        for (Book b : books) {
+            if (b.getBookId() == id) {
+                return b;
+            }
+        }
         return null;
+    }
+
+    // 책이름으로 조회
+    public List<Book> getBookByName(String name) {
+        List<Book> searchBookList = new ArrayList<>();
+        for (Book b : books) {
+            if (b.getBookName().equals(name)) {
+                searchBookList.add(b);
+            }
+        }
+        return searchBookList;
     }
 
     // 수정
@@ -34,4 +50,7 @@ public class BookController {
         return true;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
 }

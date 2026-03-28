@@ -22,7 +22,6 @@ public class Main {
 
     public static void main(String[] args) {
 //        initBook();
-
         // 책 시스템 시작
         System.out.println("도서관 프로그램을 시작합니다.");
         start();
@@ -38,11 +37,13 @@ public class Main {
         boolean running = true;
         while (running) {
             manual();
-            switch (sc.next()) {
+            switch (sc.nextLine()) {
                 case "1":
+                    findBookProcess(sc);
                     break;
                 case "2":
                     addBookProcess(sc);
+                    break;
                 case "3":
                     break;
                 case "0":
@@ -53,7 +54,6 @@ public class Main {
             }
         }
     }
-
 
 
     public static void manual() {
@@ -68,6 +68,7 @@ public class Main {
                 입력 :""");
     }
 
+    // 책 추가 서비스
     public static void addBookProcess(Scanner sc) {
         System.out.print("책 이름: ");
         String bookName = sc.nextLine();
@@ -77,7 +78,42 @@ public class Main {
         String publisher = sc.nextLine();
 
         Book book = new Book(bookName, author, publisher);
-        bookController.addBook(book);
+        if (bookController.addBook(book)) {
+            System.out.println("추가 되었습니다");
+        } else {
+            System.out.println("다시 시도해주세요");
+        }
+    }
+
+    // 책 조회 서비스
+    public static void findBookProcess(Scanner sc) {
+        int process;
+        String searchName;
+        System.out.println("""
+                1. 전체 조회
+                2. 제목으로 조회
+                입력: 
+                """);
+        process = sc.nextInt();
+        sc.nextLine();
+        switch (process) {
+            case 1:
+                System.out.println(bookController.getBooks());
+                break;
+            case 2:
+                System.out.println("책 이름을 입력해주세요 : ");
+                searchName = sc.nextLine();
+                List<Book> result = bookController.getBookByName(searchName);
+                if (result == null) {
+                    System.out.println("책 제목을 찾을 수 없습니다");
+                } else {
+                    System.out.println(result);
+                }
+                break;
+            default:
+                System.out.println("숫자를 입력하세요");
+        }
+
     }
 
 }
