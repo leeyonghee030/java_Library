@@ -47,6 +47,39 @@ public class BookController {
     }
 
     //수정
+    public Book isCheckId(int s) {
+        Book checkId = null;
+        for (Book i : books) {
+            if (i.getBookId() == s) {
+                checkId = i;
+            }
+        }
+        return checkId;
+    }
+
+    public Book isEditBook(int i, String n, String a, String p) {
+      Book editBook = null;
+        for (Book e : books) {
+            if (e.getBookId()== i){
+                e.setBookName(n);
+                e.setAuthor(a);
+                e.setPublisher(p);
+                editBook = e;
+            }
+        } return editBook;
+    }
+    public Book isEditBookName(List<Book> b,String n, String a, String p) {
+        Book editBook = null;
+        for (Book e : books) {
+            if (e.getBookName().equals(b)){
+                e.setBookName(n);
+                e.setAuthor(a);
+                e.setPublisher(p);
+                editBook = e;
+            }
+        } return editBook;
+    }
+
 
     //삭제
     public boolean deleteBookById(int id) {

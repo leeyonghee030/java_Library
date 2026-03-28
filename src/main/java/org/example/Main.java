@@ -49,8 +49,12 @@ public class Main {
                     addBookProcess(sc);
                     break;
                 case "3":
-                    System.out.println(3);
+                    etaBookProcess(sc);
                     break;
+                case "4":
+                    editBookNameProcess(sc);
+                    break;
+
                 case "0":
                     running = false;
                     break;
@@ -72,12 +76,13 @@ public class Main {
                 ======================================
                 1.책 목록 조회
                 2.책 추가
-                3.책 삭제
+                3.책 고유번호로 수정
+                4.책 이름으로 수정
                 0.종료
                 
                 입력 :
                 """);
-        //2번 책 조회
+        //2번 책 조회3
         //3
     }
 
@@ -116,18 +121,92 @@ public class Main {
             case 2: {
                 System.out.println("정보 조회할 책 이름을 적어주세요");
                 String checkName = sc.nextLine();
-                 List<Book> nameResult = bookController.isCheckName(checkName);
-                 if (nameResult.isEmpty()){
-                     System.out.println("책 정보 없음");
-             } else {
-                     System.out.println(nameResult);
-                 }
+                List<Book> nameResult = bookController.isCheckName(checkName);
+                if (nameResult.isEmpty()) {
+                    System.out.println("책 정보 없음");
+                } else {
+                    System.out.println(nameResult);
+                }
                 break;
             }
             default:
                 System.out.println("알맞은 숫자를 입력하세요");
 
         }
+
+
+    }
+    public static void etaBookProcess(Scanner sc){
+        System.out.println("수정하고싶은 책에 고유 번호를 입력해주세요");
+        int bookId = sc.nextInt();
+        sc.nextLine();
+
+        Book checkId = bookController.isCheckId(bookId);
+        if (checkId == null){
+            System.out.println("알맞지 않은 고유번호입니다,");
+        }else {
+            System.out.println("확인되었습니다");
+            System.out.println("수정할 책이름을 적어주세요");
+            String editBookName = sc.nextLine();
+            System.out.println("수정할 작가이름 적어주세요");
+            String editAuthor = sc.nextLine();
+            System.out.println("수정할 출판사이름을 적어주세요");
+            String editPublisher = sc.nextLine();
+        int editId = checkId.getBookId();
+
+        Book editBook = bookController.isEditBook(editId, editBookName, editAuthor,editPublisher);
+            System.out.println("수정 되었습니다.");
+            System.out.println(editBook);
+        }
+
+
+    }
+    public static void editBookNameProcess(Scanner sc){
+        System.out.println("수정하고 싶은 책 이름을 적어주세요");
+        String checkName = sc.nextLine();
+        List<Book> nameResult = bookController.isCheckName(checkName);
+        if (nameResult.isEmpty()) {
+            System.out.println("책 정보 없음");
+        } else {
+            System.out.println(nameResult);
+            if (nameResult.size() > 1){
+                System.out.println("같은 책이있어 고유번호 입력 부탁드립니다.");
+                int bookId = sc.nextInt();
+                sc.nextLine();
+
+                Book checkId = bookController.isCheckId(bookId);
+                if (checkId == null){
+                    System.out.println("알맞지 않은 고유번호입니다,");
+                }else {
+                    System.out.println("확인되었습니다");
+                    System.out.println("수정할 책이름을 적어주세요");
+                    String editBookName = sc.nextLine();
+                    System.out.println("수정할 작가이름 적어주세요");
+                    String editAuthor = sc.nextLine();
+                    System.out.println("수정할 출판사이름을 적어주세요");
+                    String editPublisher = sc.nextLine();
+                    int editId = checkId.getBookId();
+
+                    Book editBook = bookController.isEditBook(editId, editBookName, editAuthor,editPublisher);
+                    System.out.println("수정 되었습니다.");
+                    System.out.println(editBook);
+            }
+            }else {
+                System.out.println("확인되었습니다");
+                System.out.println("수정할 책이름을 적어주세요");
+                String editBookName = sc.nextLine();
+                System.out.println("수정할 작가이름 적어주세요");
+                String editAuthor = sc.nextLine();
+                System.out.println("수정할 출판사이름을 적어주세요");
+                String editPublisher = sc.nextLine();
+
+                Book editBook = bookController.isEditBookName(nameResult, editBookName, editAuthor,editPublisher);
+                System.out.println("수정 되었습니다.");
+                System.out.println(editBook);
+            }
+
+        }
+
 
 
     }
