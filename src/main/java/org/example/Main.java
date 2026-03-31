@@ -68,6 +68,10 @@ public class Main {
                     editBookNameProcess(sc);
                     //책제목으로 수정하는 메소드
                     break;
+                case "5":
+                    deleteBookProcess(sc);
+                    //책 삭제하는 메소드
+                    break;
 
                 case "0":
                     running = false;
@@ -95,6 +99,7 @@ public class Main {
                 2.책 추가
                 3.책 고유번호로 수정
                 4.책 이름으로 수정
+                5.책 삭제
                 0.종료
                 
                 입력 :
@@ -278,6 +283,41 @@ public class Main {
   고유번호 및 책제목으로 수정 하지말고
   책제목 하나만 하는게 더 깔금하고 편리함 //isEditBookName 은 필요없었음
      */
+    public static void deleteBookProcess(Scanner sc){
+        System.out.println("삭제하고 싶으신 책이름을 적어주세요");
+        String deleteBookName = sc.nextLine();
+        List<Book> deleteCheckName = bookController.isCheckName(deleteBookName);
+        System.out.println(deleteCheckName);
+        if (deleteCheckName.size() > 1){
+            System.out.println("같은 책이름이 있습니다.");
+            System.out.println("고유번호 입력 부탁드립니다.");
+            int deleteBookId = sc.nextInt();
+            sc.nextLine();
+
+           Book deleteCheckId = bookController.isCheckId(deleteBookId);
+           if (deleteCheckId == null){
+               System.out.println("고유번호가 잘못되었습니다.");
+           }else {
+               int deleteCheckIntId = deleteCheckId.getBookId();
+               //위에 객체가 null일떄 get으로 값을 가져오면 오류뜸
+               if (bookController.deleteBookById(deleteCheckIntId)){
+                   System.out.println("삭제가 완료되었습니다");
+               }else {
+                   System.out.println("삭제 되지 않았습니다");
+               }
+
+           }
+        }else {
+            int deleteCheckNameId = deleteCheckName.get(0).getBookId();
+            if (bookController.deleteBookById(deleteCheckNameId)){
+                System.out.println("삭제가 완료되었습니다");
+            }else {
+                System.out.println("삭제 되지 않았습니다");
+            }
+
+        }
+
+    }
 
     // ------------------------------------------------------------------------------------------------------------
     public static void initBook() {

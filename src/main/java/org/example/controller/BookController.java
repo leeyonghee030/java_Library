@@ -65,34 +65,62 @@ public class BookController {
     }
 
     public Book isEditBook(int b, String n, String a, String p) {
-      Book editBook = null;
+        Book editBook = null;
         for (Book e : books) { //e는 books 안의 객체를 그대로 가리킴
-            if (e.getBookId()== b){ //id가 일치할떄 name,author,publisher
+            if (e.getBookId() == b) { //id가 일치할떄 name,author,publisher
                 e.setBookName(n); //을 set으로 수정한다 매개변수값으로
                 e.setAuthor(a);
                 e.setPublisher(p);
                 editBook = e; // 변경된 e값을 저장
             }
-        } return editBook;
+        }
+        return editBook;
     }
 
     //검색결과가 1개일떄 사용하는 수정 메서드
-    public Book isEditBookName(List<Book> b,String n, String a, String p) {
+    public Book isEditBookName(List<Book> b, String n, String a, String p) {
         Book editBook = null;
         for (Book e : books) {   //매개변수 그전에 이름 체크로 1회확인되었음
-            if (e.getBookName().equals(b)){ //매개변수를 책제목으랑 비교
+            if (e.getBookName().equals(b)) { //매개변수를 책제목으랑 비교
                 e.setBookName(n); //set으로 이름들 수정
                 e.setAuthor(a);
                 e.setPublisher(p);
                 editBook = e;  //대조된 Bokk객체 수정된 값 변수에저장
             }
-        } return editBook;
+        }
+        return editBook;
     }
 
 
     //삭제
     public boolean deleteBookById(int id) {
-        return true;
+        for (Book b : books) {
+            if (b.getBookId() == id) {
+                books.remove(b);
+                //대조가 되면 books안에 b를 삭제시킨다
+                //바로 리턴값안주면 다음으로 실행 되고 books.remove하면
+                //2번삭제되면 3번이 아니라 4번으로 비교가 시작되어 오류발생
+                //여러게 해야하면 iterator 순회도구이용해야함
+                /*
+                 Iterator<Book> iterator = books.iterator();
+                // iterator = books 리스트 순회 도구
+
+               while (iterator.hasNext()) {
+                // hasNext() = 다음 요소가 있으면 true
+
+                Book b = iterator.next();
+                 // next() = 다음 요소 꺼내기
+
+            if (b.getBookId() == id) {
+            iterator.remove();
+            // 리스트 직접 삭제가 아닌
+            // iterator 통해서 안전하게 삭제!
+            return true;
+                 */
+                return true;
+            }
+        }
+        return false;
     }
 
     //books가 private라서 외부에서 직접 접근 할수없다
