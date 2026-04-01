@@ -44,6 +44,15 @@ public class BookController {
     }
 
     // 수정
+    public boolean updateBook(Book b) {
+        for (int i = 0; i < books.size(); i++) {
+            if (books.get(i).getBookId() == b.getBookId()) {
+                books.set(i, b);
+                return true;
+            }
+        }
+        return false;
+    }
 
     // 삭제
     public boolean deleteBookById(int id) {
