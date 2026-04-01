@@ -31,6 +31,8 @@ public class Main {
 //        initBook();
         //책 시스템 시작
         System.out.println("도서관 프로그램을 시작합니다");
+        //유저 로그인 및 유저시스쳄에 대한 메소드
+        loginStart();
         //책 시스템에 대한 모든 메소드
         start();
         //시스템 종료
@@ -87,6 +89,99 @@ public class Main {
 
         //while 로직 종료
     }
+    public static void loginStart(){
+        Scanner sc = new Scanner(System.in);
+        boolean isRunning = true;
+        while (isRunning){
+            loginManual();
+            switch (sc.nextLine()){
+                case "1":
+                    break;
+                case "2":
+                    break;
+                case "3":
+                    break;
+                case "0":
+                    isRunning = false;
+                    break;
+                default:
+                    System.out.println("잘못된 입력입니다.");
+                    System.out.println("숫자만 입력해주세요.");
+            }
+
+        }
+    }
+
+    //사용자가 프로그램에 들어왔을떄 로그인 안내문
+    public static void  loginManual(){
+        System.out.println(
+                """
+    ==========================================
+               도서관 로그인 프로그램
+    ==========================================
+    1.로그인
+    2.회원가입
+    3.관리자 로그인
+    0.종료
+    
+    입력 :
+    """
+        );
+    }
+
+    public  void addUser(Scanner sc){
+        String addName; //while끝나도 사용가능 (밖에서 선언)
+        while (true) {
+            System.out.println("유저 이름을 적어주세요");
+            System.out.println("문자+숫자로 최소 3~10글자 형식으로 적어주세요");
+            System.out.println("취소는 0을 적어주세요");
+            addName = sc.nextLine();
+            if (addName.equals("0")){
+                System.out.println("회원가입을 취소합니다");
+                return;//addUser 함수 메소드 자체종료
+            }
+            if (userController.addNameCheck(addName)) {
+                System.out.println("사용 가능한 이름입니다");
+               break; //while만 탈출 아래코드로 계속 진행
+            } else {
+                System.out.println("형식에 맞게 다시 적어주세요");
+            }
+        }
+        String addUserName;
+        while (true){
+            System.out.println("로그인 아이디를 적어주세요");
+            System.out.println("문자+숫자 최소 6~12글자 형식으로 적어주세요");
+            System.out.println("취소는 0을 적어주세요");
+            addUserName = sc.nextLine();
+
+            if (addUserName.equals("0")){
+                System.out.println("회원가입을 취소합니다");
+                return;}//addUser 함수 메소드 자체종료
+            if (userController.addUserNameCheck(addUserName)){
+               if (userController.checkUsernameDuplicate(addUserName)){
+                   System.out.println("사용가능한 아이디 입니다.");
+                   break; //while만 탈출 아래코드로 계속 진행
+               }else {
+                   System.out.println("중복된 아이디가 있습니다.");
+               }
+            }else {
+                System.out.println("형식에 맞게 다시 적어주세요");
+            }
+        }
+        String addUserPassWord;
+        while (true){
+            System.out.println("로그인 비밀번호를 적어주세요");
+            System.out.println("문자+숫자 최소 6~12글자 형식으로 적어주세요");
+            System.out.println("취소는 0을 적어주세요");
+            addUserPassWord = sc.nextLine();
+
+            if (addUserPassWord.equals("0")){
+                System.out.println("회원가입을 취소합니다");
+                return;}//addUser 함수 메소드 자체종료
+        }
+
+    }
+
 
     // 안내문
     public static void manual() {
