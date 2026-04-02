@@ -21,8 +21,26 @@ private int nextId = 1;
     }
 
         //생성
+    public  boolean loginUserNameCheck(String n){
+        for (User u : users){
+            if (u.getUserName().equals(n)){
+                return true;
+            }
+        }return false;
+    }
+
+    public User loginUserPwCheck(String n,String p){
+        User loginResult = null;
+        for (User u :users){
+            if (u.getUserName().equals(n) &&
+                    u.getUserPassWord().equals(p)){
+                loginResult = u;
+            }
+        }return loginResult;
+    }
+
     public boolean addNameCheck(String n){
-        String pattern ="^[a-zA-Z0-9]{3,10}$";
+        String pattern ="^[a-zA-Z0-9가-힣]{3,10}$";
         // 패턴 분해
         //```
         //^           = 문자열 시작
@@ -37,7 +55,7 @@ private int nextId = 1;
         }
     }
 
-    public boolean addUserNameCheck(String n){
+    public boolean addUserNamePwCheck(String n){
         String userNamePattern = "^[a-zA-Z0-9]{6,12}$";
         if (n.matches(userNamePattern)){
             return true;
@@ -55,7 +73,13 @@ private int nextId = 1;
             // 반복문 다돌기위해
         }return true;
     }
-
+//    public boolean checkUserPwDuplicate(String p){
+//        for (User u : users){
+//            if (u.getUserPassWord().equals(p)){
+//                return false;
+//            }
+//        }return true;
+//    } 비밀번호 중복은 불필요
 
 
 
